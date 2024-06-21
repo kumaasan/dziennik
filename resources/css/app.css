@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Reset some default browser styles */
+select, button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Style the select element */
+select {
+    background-color: #f8fafc; /* Tailwind's bg-gray-50 */
+    border: 1px solid #d1d5db; /* Tailwind's border-gray-300 */
+    color: #1f2937; /* Tailwind's text-gray-900 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    border-radius: 0.5rem; /* Tailwind's rounded-lg */
+    padding: 0.625rem; /* Tailwind's p-2.5 */
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+
+
+    border-color: #3b82f6; /* Tailwind's focus:border-blue-500 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Tailwind's focus:ring-blue-500 */
+    background-color: #1f2937; /* Tailwind's dark:bg-gray-700 */
+    color: #f8fafc; /* Tailwind's dark:text-white */
+}
+
+/* Style the option elements */
+option {
+    background-color: #f8fafc; /* Tailwind's bg-gray-50 */
+    color: #1f2937; /* Tailwind's text-gray-900 */
+}
+
+/* Add an arrow indicator */
+select::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #6b7280; /* Tailwind's text-gray-400 */
+}
