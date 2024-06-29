@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->integer('subject_id');
+            $table->foreignId('subject_id');
             $table->integer('weight');
-            $table->string('name');
             $table->integer('grade');
             $table->timestamps();
         });

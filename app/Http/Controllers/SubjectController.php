@@ -15,6 +15,11 @@ class SubjectController extends Controller
         return view('subjects')->with('subjects', $subjects);
     }
 
+    public function showSubjectPage(){
+        $subjects = Subject::all();
+        return view('allSubjects')->with('subjects', $subjects);
+    }
+
     public function selectedSubject(Request $request){
         $request->get('subjects');
 
@@ -22,7 +27,6 @@ class SubjectController extends Controller
 
         $grades = Grade::join('subjects', 'subjects.id', '=', 'grades.subject_id')->where('subjects.id', '=', $subject->id)->get();
 
-        //dd($grades);
         return view('selectedSubject')->with('subject', $subject)->with('grades', $grades);
     }
 }

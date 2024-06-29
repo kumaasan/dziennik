@@ -50,3 +50,11 @@ select::after {
     pointer-events: none;
     color: #6b7280; /* Tailwind's text-gray-400 */
 }
+
+
+/* input styling*/
+input {
+    border: 1px solid #e2e8f0; /* Add border to input fields */
+    padding: 0.5rem;
+    border-radius: 0.50rem;
+}
