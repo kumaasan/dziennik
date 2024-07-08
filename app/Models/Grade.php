@@ -13,6 +13,7 @@ class Grade extends Model
 
     public function subjects() //: BelongsTo
     {
-        return $this->belongsTo(Subject::class);
+     return $this->belongsTo(Subject::class);
     }
+
 }

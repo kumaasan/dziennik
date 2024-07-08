@@ -17,7 +17,7 @@
                         <h2 class="text-2xl font-bold text-gray-700 mb-4">{{$subject->name}}</h2>
                         <div class="flex gap-3 w-full">
                             <div class="flex-1">
-                                <form action="{{route('addGrade')}}" method="post" class="flex flex-col gap-3 w-full">
+                                <form action="{{route('addGrade', ['subject_id' =>  $subject->id]) }}" method="post" class="flex flex-col gap-3 w-full">
                                     @csrf
                                     <div>
                                         <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
@@ -38,16 +38,16 @@
                 <div class="w-full md:w-2/5 px-2">
                     <div class="flex flex-col items-center justify-center border-2 rounded-lg p-3 bg-white shadow-lg h-full">
                         <h2 class="text-2xl font-bold text-gray-700 mb-4">Oceny:</h2>
-                        <div class="flex flex-wrap gap-1 mb-2">
-                            <span class="bg-gray-200 rounded-full px-3 py-1">2</span>
-                            <span class="bg-gray-200 rounded-full px-3 py-1">4</span>
-                            <span class="bg-gray-200 rounded-full px-3 py-1">5</span>
-                            <span class="bg-gray-200 rounded-full px-3 py-1">6</span>
-                            <span class="bg-gray-200 rounded-full px-3 py-1">2</span>
-                            <span class="bg-gray-200 rounded-full px-3 py-1">1</span>
+                        <div class="flex flex-wrap gap-1 h-full mb-2">
+
+                            @foreach($subject->grades as $grade)
+                                <span weight="{{$grade->weight}}" class="grade-span bg-gray-200 rounded-full px-3 py-1">{{ $grade->grade }}</span>
+                            @endforeach
+
                         </div>
+                        <span class="hidden" id="grade-weight"></span>
                         <h2 class="text-2xl font-bold text-gray-700 mb-4">Średnia:</h2>
-                        <p class="text-2xl font-bold text-green-500 mb-4">4.20</p>
+                        <p class="text-2xl font-bold text-green-500 mb-4">@if($subject->average >0) {{$subject->average}} @endif</p>
                         <button type="button" class="w-full mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                             Edytuj
                         </button>
@@ -58,5 +58,15 @@
     </div>
 </div>
 
+
+<script>
+let grades = document.getElementsByClassName('grade-span');
+Array.from(grades).forEach(e => {
+   e.addEventListener('click', function(){
+       Swal.fire('Waga oceny: ' + e.getAttribute('weight'));
+   })
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
