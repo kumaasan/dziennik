@@ -50,7 +50,7 @@ class SubjectController extends Controller
             ->where('subjects.id', '=', $subject->id)
             ->groupBy('grades.subject_id')->average('grades.grade')->get();
 
-        dd($grades);
+//        dd($grades);
 
         return view('selectedSubject')->with('subject', $subject)->with('grades', $grades);
     }

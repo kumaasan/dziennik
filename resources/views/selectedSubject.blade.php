@@ -10,6 +10,8 @@
 
 <body class="bg-gradient-to-r from-cyan-500 to-blue-500">
 
+
+
 <div class="flex justify-center items-center w-full h-screen">
     <div class="flex items-center justify-center flex-col border-2 rounded-lg w-3/5 bg-white shadow-lg">
 

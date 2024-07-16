@@ -27,8 +27,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    //create new user
     public function store(Request $request)
     {
+        $request->validate([
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required','string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'min:7']
+        ]);
+
         $user = new User();
         $user->first_name = $request->input('firstName');
         $user->last_name = $request->input('lastName');
@@ -36,15 +45,25 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        return redirect()->back();
+
+        session()->flash('success', 'Konto zostało utworzone pomyślnie');
+
+
+        return redirect(route('homePage'));
     }
     /**
      * My function for password reset
      */
 
-    public function login(Request $request){
-
-    }
+//    public function login(Request $request){
+//
+//        $request->validate([
+//            'email' => ['required', 'string', 'email', 'max:255'],
+//            'password' => ['required', 'string', 'min:8']
+//        ]);
+//
+//        $user = User::where('email', $request->input('email'))->first();
+//    }
 
     public function resetPasswordForm(Request $request){
 

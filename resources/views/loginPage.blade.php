@@ -19,15 +19,15 @@
                     @csrf
                     <div>
                         <label for="firstName" class="block mb-2 text-sm font-medium text-gray-700">Imię:</label>
-                        <input type="text" name="firstName" id="firstName" class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                        <input type="text" name="firstName" id="firstName" value="{{old('firstName')}}" class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
                     </div>
                     <div>
                         <label for="lastName" class="block mb-2 text-sm font-medium text-gray-700">Nazwisko</label>
-                        <input type="text" name="lastName" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                        <input type="text" name="lastName" id="lastName" value="{{old('lastName')}}" class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
                     </div>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                        <input type="email" name="email" id="email" {{old('email')}} class="bg-gray-50 border border-gray-300 text-gray-700 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Hasło:</label>
