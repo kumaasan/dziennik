@@ -20,10 +20,12 @@ Route::get('/logowanie', function (){ return view('loginPage');})->name('loginPa
 
 Route::post('/logowanie', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
 
-Route::post('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPassword'])->name('password.reset');
+Route::post('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPassword'])->name('password.reset')->middleware('auth');
 
-Route::get('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPasswordForm'])->name('password.reset.form');
+Route::get('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPasswordForm'])->name('password.reset.form')->middleware('auth');
 
-Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountForm'])->name('crete.account.form');
+Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountForm'])->name('create.account.form')->middleware('guest');
 
-Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name('crete.account');
+Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name('crete.account')->middleware('guest');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');

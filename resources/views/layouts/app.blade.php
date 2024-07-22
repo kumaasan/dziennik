@@ -11,7 +11,7 @@
 <body class="bg-gradient-to-r from-cyan-500 to-blue-500">
 
 
-<div class="flex justify-center items-center w-full h-screen">
+<div class=" w-full h-screen">
     @yield('content')
 </div>
 

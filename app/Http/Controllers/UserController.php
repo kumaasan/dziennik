@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -35,7 +36,8 @@ class UserController extends Controller
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required','string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'min:7']
+            'password' => ['required_with:password_confirmed', 'same:password_confirmed', 'min:7'],
+            'password_confirmed' => ['required', 'min:7']
         ]);
 
         $user = new User();
@@ -45,25 +47,39 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
+        session()->flash('success', 'Konto zostało utworzone pomyślnie.');
 
-        session()->flash('success', 'Konto zostało utworzone pomyślnie');
+        auth()->login($user);
 
 
         return redirect(route('homePage'));
     }
-    /**
-     * My function for password reset
-     */
+    public function logout(){
 
-//    public function login(Request $request){
-//
-//        $request->validate([
-//            'email' => ['required', 'string', 'email', 'max:255'],
-//            'password' => ['required', 'string', 'min:8']
-//        ]);
-//
-//        $user = User::where('email', $request->input('email'))->first();
-//    }
+        auth()->logout();
+
+        session()->flash('logout', 'Pomyślnie wylogowano.');
+
+        return redirect(route('homePage'));
+    }
+
+    public function login(Request $request){
+        $request->validate([
+            'email' => ['required', 'email', 'max:255', 'exists:users,email'],
+            'password' => ['required', 'min:7']
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            session()->flash('login', 'Pomyślnie zalogowano.');
+            return redirect(route('homePage'));
+        } else {
+            return redirect()->back()
+                ->withErrors(['password' => 'Nie prawidłowe dane logowania'])
+                ->withInput($request->only('email'));
+        }
+    }
 
     public function resetPasswordForm(Request $request){
 
