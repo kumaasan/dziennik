@@ -8,7 +8,7 @@
     <title>@yield('title', 'Dziennik Szkolny')</title>
     @yield('head')
 </head>
-<body class="bg-gradient-to-r from-cyan-500 to-blue-500">
+<body class="bg-[url('../../public/background/background.svg')]">
 
 
 <div class=" w-full h-screen">

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<section class="bg-gradient-to-r from-cyan-500 to-blue-500 min-h-screen flex items-center justify-center">
+<section class="bg-[url('../../public/background/background.svg')] min-h-screen flex items-center justify-center">
     <div class="w-full flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full max-w-xl bg-white rounded-lg shadow-lg md:mt-0 xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

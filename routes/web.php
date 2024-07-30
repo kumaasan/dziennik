@@ -26,6 +26,6 @@ Route::get('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPassword
 
 Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountForm'])->name('create.account.form')->middleware('guest');
 
-Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name('crete.account')->middleware('guest');
+Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name('create.account')->middleware('guest');
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');

@@ -8,7 +8,7 @@
     <title>Oceny</title>
 </head>
 
-<body class="bg-gradient-to-r from-cyan-500 to-blue-500">
+<body class="bg-[url('../../public/background/background.svg')]">
 <x-sidebar></x-sidebar>
 <!-- main content -->
 <div class="p-4 sm:ml-64">

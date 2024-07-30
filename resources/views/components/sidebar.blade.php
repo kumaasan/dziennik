@@ -1,6 +1,6 @@
-<div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto bg-white dark:bg-gray-800 flex flex-col">
+<div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto flex flex-col glassEffect">
     <div>
-        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+        <h5 id="drawer-navigation-label" class="text-base text-center font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
         <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
                 <!-- Menu Items -->
@@ -99,7 +99,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     function toggleDropdown() {
