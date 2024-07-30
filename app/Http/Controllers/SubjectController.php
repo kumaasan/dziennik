@@ -50,8 +50,23 @@ class SubjectController extends Controller
             ->where('subjects.id', '=', $subject->id)
             ->groupBy('grades.subject_id')->average('grades.grade')->get();
 
-//        dd($grades);
-
         return view('selectedSubject')->with('subject', $subject)->with('grades', $grades);
+    }
+
+    public function addNew(Request $request){
+        $request->validate([
+            'newSubject' => ['required', 'string', 'max:255', 'min:2']
+        ]);
+
+        $subject = new Subject();
+        $subject->name = $request->input('newSubject');
+        $subject->user_id = $request->input('userId');
+        $subject->save();
+        return redirect()->back();
+    }
+
+    public function newSubject()
+    {
+        return view('addNewSubject');
     }
 }

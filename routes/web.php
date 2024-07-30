@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,7 @@ Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountFo
 Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name('create.account')->middleware('guest');
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::get('/nowePrzedmioty', [SubjectController::class, 'newSubject'])->name('subject.addNewSubject');
+
+Route::post('/nowePrzedmioty/dodaj', [SubjectController::class, 'addNew'])->name('subject.addNew');
