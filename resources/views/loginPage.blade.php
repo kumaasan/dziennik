@@ -17,7 +17,7 @@
             Zaloguj się
         </h1>
 
-        <form class="space-y-6" action="{{ route('login') }}" method="post">
+        <form class="space-y-6" action="{{ route('login')}}" method="post">
             @csrf
             <div>
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
