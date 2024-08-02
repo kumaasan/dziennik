@@ -31,6 +31,8 @@ Route::post('/logowanie/tworzenieKonta', [UserController::class, 'store'])->name
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/nowePrzedmioty', [SubjectController::class, 'newSubject'])->name('subject.addNewSubject');
+Route::get('/nowePrzedmioty', [SubjectController::class, 'newSubject'])->name('subject.addNewSubject')->middleware('auth');
 
 Route::post('/nowePrzedmioty/dodaj', [SubjectController::class, 'addNew'])->name('subject.addNew');
+
+Route::post('/usuńPrzedmioty', [SubjectController::class, 'deleteSubject'])->name('subject.delete')->middleware('auth');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class SubjectController extends Controller
@@ -16,10 +17,12 @@ class SubjectController extends Controller
     }
 
     public function showSubjectPage(){
-        $subjects = Subject::all();
+        $userId = Auth::user()->id;
+        $subjects = Subject::where('user_id', $userId)->get();
+        $subjectName = $subjects->pluck('name');
 
         $grades = Grade::select('grade', 'subject_id', 'weight')->get();
-//        dd($grades);
+
         if ($grades->isEmpty()) {
             $floorAvg = 0;
             return view('allSubjects')->with('subjects', $subjects)->with('floorAvg', $floorAvg);
@@ -38,7 +41,7 @@ class SubjectController extends Controller
                 $subject->average = 0;
         }
 
-        return view('allSubjects')->with(['subjects' => $subjects]); // ASOCJACJA KURWAAAA
+        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName]);
     }
 
     public function selectedSubject(Request $request){
@@ -62,11 +65,29 @@ class SubjectController extends Controller
         $subject->name = $request->input('newSubject');
         $subject->user_id = $request->input('userId');
         $subject->save();
+
+        session()->flash('added', 'Przedmiot dodano pomyślnie');
         return redirect()->back();
     }
 
     public function newSubject()
     {
-        return view('addNewSubject');
+        $userId = Auth::user()->id;
+        $subjectName = Subject::where('user_id', $userId)->get();
+        return view('addNewSubject')->with(['subjectName' => $subjectName]);
+    }
+
+    public function deleteSubject(Request $request)
+    {
+
+        $subject = Subject::where('id', $request->get('subjectId'))
+            ->where('user_id', $request->get('userId'))
+            ->first();
+
+        if($subject){
+            $subject->delete();
+            session()->flash('deleted', 'Pomyślnie usunięto przedmiot');
+        }
+        return redirect()->back();
     }
 }
