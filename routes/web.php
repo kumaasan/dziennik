@@ -11,11 +11,11 @@ Route::get('/', function () {
 
 Route::get('/przedmioty', [\App\Http\Controllers\SubjectController::class, 'showAllSubjects'])->name('subject');
 
-Route::post('/przedmioty/oceny', [\App\Http\Controllers\SubjectController::class, 'selectedSubject'])->name('showSubjects');
+//Route::post('/przedmioty/oceny', [\App\Http\Controllers\SubjectController::class, 'selectedSubject'])->name('showSubjects');
 
 Route::post('/przedmioty/oceny/srednia', [\App\Http\Controllers\GradeController::class, 'addGrade'])->name('addGrade');
 
-Route::get('/przedmioty/wszystkiePrzedmioty', [\App\Http\Controllers\SubjectController::class, 'showSubjectPage'])->name('subject.showAll');
+Route::get('/przedmioty/wszystkiePrzedmioty', [\App\Http\Controllers\SubjectController::class, 'showSubjectPage'])->name('subject.showAll')->middleware('auth');
 
 Route::get('/logowanie', function (){ return view('loginPage');})->name('loginPage');
 
@@ -33,6 +33,12 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middle
 
 Route::get('/nowePrzedmioty', [SubjectController::class, 'newSubject'])->name('subject.addNewSubject')->middleware('auth');
 
-Route::post('/nowePrzedmioty/dodaj', [SubjectController::class, 'addNew'])->name('subject.addNew');
+Route::post('/nowePrzedmioty/dodaj', [SubjectController::class, 'addNew'])->name('subject.addNew')->middleware('auth');
 
-Route::post('/usuńPrzedmioty', [SubjectController::class, 'deleteSubject'])->name('subject.delete')->middleware('auth');
+Route::post('/usunPrzedmioty', [SubjectController::class, 'deleteSubject'])->name('subject.delete')->middleware('auth');
+
+Route::get('/konto', [UserController::class, 'account'])->name('account.show')->middleware('auth');
+
+Route::get('/konto/edytuj', [UserController::class, 'editAccount'])->name('account.edit')->middleware('auth');
+
+Route::post('/konto/edytuj', [UserController::class, 'updateAccount'])->name('account.update')->middleware('auth');

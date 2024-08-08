@@ -81,6 +81,18 @@ class UserController extends Controller
         }
     }
 
+    public function updateAccount(Request $request)
+    {
+        dd($request->all);
+    }
+    public function account(){
+        return view('account');
+    }
+
+    public function editAccount()
+    {
+        return view('editAccount');
+    }
     public function resetPasswordForm(Request $request){
 
         return view('resetPassword');

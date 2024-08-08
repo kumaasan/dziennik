@@ -44,18 +44,6 @@ class SubjectController extends Controller
         return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName]);
     }
 
-    public function selectedSubject(Request $request){
-        $request->get('subjects');
-
-        $subject = Subject::where('id', '=', $request->get('subjects'))->first();
-
-        $grades = Grade::join('subjects', 'subjects.id', '=', 'grades.subject_id')
-            ->where('subjects.id', '=', $subject->id)
-            ->groupBy('grades.subject_id')->average('grades.grade')->get();
-
-        return view('selectedSubject')->with('subject', $subject)->with('grades', $grades);
-    }
-
     public function addNew(Request $request){
         $request->validate([
             'newSubject' => ['required', 'string', 'max:255', 'min:2']

@@ -17,12 +17,12 @@
                 </div>
                 @guest()
                     <div class="flex items-center justify-center h-24 rounded bg-gray-50 glassEffect">
-                        <p class="text-2xl text-gray-400 dark:text-gray-500">Konto gościa</p>
+                        <p class="text-2xl text-white capitalize">Konto gościa</p>
                     </div>
                 @endguest
                 @auth()
-                    <div class="flex items-center justify-center h-24 rounded bg-gray-50 whiteGlassEffect">
-                        <p class="text-2xl text-white">Witaj {{auth()->user()->first_name}}</p>
+                    <div class="flex items-center justify-center h-24 rounded bg-gray-50 glassEffect">
+                        <p class="text-2xl text-white capitalize">Witaj {{auth()->user()->first_name}} {{auth()->user()->last_name}}</p>
                     </div>
                 @endauth
 
@@ -45,6 +45,7 @@
                 <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
             </div>
         </div>
+        some small footer here :3
     </div>
 
     {{--    <div class="flex items-center justify-center flex-col border-2 rounded-lg p-8 bg-white shadow-lg">--}}

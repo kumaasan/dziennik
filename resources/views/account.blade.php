@@ -12,7 +12,7 @@
 <div class="flex">
     <div class="flex-shrink-0 w-64"></div>
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
-        <x-reset-password-form></x-reset-password-form>
+       <x-edit-account-form></x-edit-account-form>
     </div>
 </div>
 </body>

@@ -57,6 +57,9 @@
                     </div>
                 </div>
             @endforeach
+            @auth
+                <div class="h-[400px] w-3/5 flex items-center justify-center bg-gray-50 glassEffect">elo</div>
+            @endauth
         </div>
     </div>
 </div>
