@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,16 +85,44 @@ class UserController extends Controller
 
     public function updateAccount(Request $request)
     {
-        dd($request->all);
+        $user = Auth::user();
+        $user->grades()->update([
+            'minimal_avg' => $request->input('minimal_average')
+        ]);
+        $user->update([
+            'first_name' => $request->input('new_first_name'),
+            'last_name' => $request->input('new_last_name'),
+            'email' => $request->input('new_email'),
+        ]);
+
+        session()->flash('editSuccess', 'Dane zmieniono pomyślnie.');
+        return redirect(route('homePage'));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => ['required_with:new_password_confirmed', 'same:new_password_confirmed', 'min:7'],
+            'new_password_confirmed' => ['required', 'min:7']
+        ]);
+
+        $user = Auth::user();
+        $userEmail = Auth::user()->email;
+
+        if($request->input('email') == $userEmail){
+            $user->update([
+                'password' => Hash::make($request->input('new_password'))
+            ]);
+        }
+
+        session()->flash('successPassChange', 'Hasło zmieniono pomyślnie');
+
+        return redirect(route('homePage'));
     }
     public function account(){
         return view('account');
     }
 
-    public function editAccount()
-    {
-        return view('editAccount');
-    }
     public function resetPasswordForm(Request $request){
 
         return view('resetPassword');

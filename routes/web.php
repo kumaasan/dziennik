@@ -21,9 +21,7 @@ Route::get('/logowanie', function (){ return view('loginPage');})->name('loginPa
 
 Route::post('/logowanie', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
 
-Route::post('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPassword'])->name('password.reset')->middleware('auth');
-
-Route::get('/logowanie/odzyskiwanieHasla',[UserController::class, 'resetPasswordForm'])->name('password.reset.form')->middleware('auth');
+Route::get('/konto/zmienHaslo',[UserController::class, 'resetPasswordForm'])->name('password.reset.form')->middleware('auth');
 
 Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountForm'])->name('create.account.form')->middleware('guest');
 
@@ -39,6 +37,6 @@ Route::post('/usunPrzedmioty', [SubjectController::class, 'deleteSubject'])->nam
 
 Route::get('/konto', [UserController::class, 'account'])->name('account.show')->middleware('auth');
 
-Route::get('/konto/edytuj', [UserController::class, 'editAccount'])->name('account.edit')->middleware('auth');
-
-Route::post('/konto/edytuj', [UserController::class, 'updateAccount'])->name('account.update')->middleware('auth');
+Route::patch('/konto/edytuj', [UserController::class, 'updateAccount'])->name('account.update')->middleware('auth');
+#change password
+Route::patch('/konto/zmienHaslo', [UserController::class, 'changePassword'])->name('account.changePassword')->middleware('auth');

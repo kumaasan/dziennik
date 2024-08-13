@@ -1,11 +1,12 @@
-<form class="w-3/5 mx-auto bg-[#DCDCE2] rounded-lg shadow-lg px-8 pb-8 space-y-6">
+<form class="w-3/5 mx-auto bg-[#DCDCE2] rounded-lg shadow-lg px-8 pb-8 space-y-6" method="post" action="{{ route('account.changePassword') }}">
+    @csrf
+    @method('PATCH')
     <h1 class="text-xl font-bold pt-5 leading-tight tracking-tight text-gray-700 md:text-2xl mb-6">
         Zmień hasło
     </h1>
-    @csrf
     <div class="mb-5">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
-        <input type="email" id="email" value="{{old('email')}}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+        <input type="email" name="email" id="email" value="{{old('email')}}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
     </div>
     <div class="mb-5">
         <label for="" class="block mb-2 text-sm font-medium text-gray-700">Nowe hasło:</label>

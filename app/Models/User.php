@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function grades()
+    public function grades(): HasMany
     {
         return $this->hasMany(Grade::class);
     }

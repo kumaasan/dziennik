@@ -18,7 +18,7 @@ class GradeController extends Controller
         $grade = new Grade();
         $subject_id = $request->subject_id;
         $grade->subject_id = $subject_id;
-
+        $grade->user_id = auth()->user()->id;
         $grade->weight = $request->input('weight');
         $grade->grade = $request->input('grade');
         $grade->save();

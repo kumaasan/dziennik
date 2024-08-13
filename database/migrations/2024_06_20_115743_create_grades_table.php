@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('subject_id');
+            $table->foreignId('user_id');
             $table->integer('weight');
             $table->integer('grade');
             $table->integer('minimal_avg')->nullable();
