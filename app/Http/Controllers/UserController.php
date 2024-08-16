@@ -35,9 +35,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => ['required', 'string', 'max:255'],
-            'lastName' => ['required','string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'firstName' => ['required', 'string', 'max:255', 'min:3'],
+            'lastName' => ['required','string', 'max:255', 'min:3'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required_with:password_confirmed', 'same:password_confirmed', 'min:7'],
             'password_confirmed' => ['required', 'min:7']
         ]);
@@ -85,10 +85,39 @@ class UserController extends Controller
 
     public function updateAccount(Request $request)
     {
-        $user = Auth::user();
-        $user->grades()->update([
-            'minimal_avg' => $request->input('minimal_average')
+        if ($request->filled('minimal_average')) {
+            $request->merge(['minimal_average' => str_replace(',', '.', $request->input('minimal_average'))]);
+        }
+
+        $request->validate([
+            'new_first_name' => ['required', 'string', 'min:3'],
+            'new_last_name' => ['required', 'string', 'min:3'],
         ]);
+
+        if ($request->filled('minimal_average')) {
+            $request->validate([
+                'minimal_average' => ['nullable', 'numeric', 'between:1,2'],
+            ]);
+        }
+
+        if (Auth::user()->email === $request->input('new_email')) {
+            $request->validate([
+                'new_email' => ['required', 'email'],
+            ]);
+        } else {
+            $request->validate([
+                'new_email' => ['required', 'email', 'unique:users,email'],
+            ]);
+        }
+
+        $user = Auth::user();
+
+        if ($request->filled('minimal_average')) {
+            $user->grades()->update([
+                'minimal_avg' => $request->input('minimal_average'),
+            ]);
+        }
+
         $user->update([
             'first_name' => $request->input('new_first_name'),
             'last_name' => $request->input('new_last_name'),
@@ -96,9 +125,11 @@ class UserController extends Controller
         ]);
 
         session()->flash('editSuccess', 'Dane zmieniono pomyślnie.');
-        return redirect(route('homePage'));
-    }
+        $minimal_average = Grade::where('user_id', $user->id)->value('minimal_avg');
 
+        return view('components.edit-account-form', ['minimal_average' => $minimal_average]);
+
+    }
     public function changePassword(Request $request)
     {
         $request->validate([
@@ -120,7 +151,8 @@ class UserController extends Controller
         return redirect(route('homePage'));
     }
     public function account(){
-        return view('account');
+        $minimal_average = Grade::where('user_id', Auth::user()->id)->value('minimal_avg');
+        return view('account')->with(['minimalAverage' => $minimal_average]);
     }
 
     public function resetPasswordForm(Request $request){

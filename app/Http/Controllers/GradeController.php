@@ -26,7 +26,7 @@ class GradeController extends Controller
         return redirect()->back()->with('avg', $avg);
     }
     public function calcAvg(){
-        $grades = Grade::select('grade', 'weight')->get(); //'subject_id', polaczyc jakos subject_id z średnia, moze tak samo jak form: action="{{route('addGrade', ['subject_id' =>  $subject->id]) }}" cos na ten desen
+        $grades = Grade::select('grade', 'weight')->get();
         $avg = 0;
         $count = 0;
         foreach($grades as $grade) {

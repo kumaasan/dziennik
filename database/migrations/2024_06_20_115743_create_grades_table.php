@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('weight');
             $table->integer('grade');
-            $table->integer('minimal_avg')->nullable();
+            $table->decimal('minimal_avg', 3, 2)->nullable();
             $table->timestamps();
         });
     }
