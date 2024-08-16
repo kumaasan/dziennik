@@ -125,9 +125,8 @@ class UserController extends Controller
         ]);
 
         session()->flash('editSuccess', 'Dane zmieniono pomyślnie.');
-        $minimal_average = Grade::where('user_id', $user->id)->value('minimal_avg');
 
-        return view('components.edit-account-form', ['minimal_average' => $minimal_average]);
+        return redirect(route('homePage'));
 
     }
     public function changePassword(Request $request)
