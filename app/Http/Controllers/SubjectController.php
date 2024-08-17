@@ -41,7 +41,8 @@ class SubjectController extends Controller
                 $subject->average = 0;
         }
 
-        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName]);
+        $ammount = Subject::where('user_id', Auth::user()->id)->count();
+        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName, 'ammount' => $ammount]);
     }
 
     public function addNew(Request $request){

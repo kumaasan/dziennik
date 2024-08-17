@@ -9,12 +9,26 @@
 <body class="bg-[url('../../public/background/background.svg')]">
 <x-sidebar></x-sidebar>
 <div class="flex">
-    <div class="flex-shrink-0 w-64">
-        <!-- This div matches the width of the sidebar to create the space -->
-    </div>
+    @if($ammount != 0)
+        <div class="flex-shrink-0 w-64"></div>
+    @endif
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
         <div class="w-full max-w-4xl">
-            @foreach($subjects as $subject)
+            @if($ammount == 0)
+                <section class="flex flex-grow items-center justify-center ml-64">
+                    <form action="{{ route('subject.addNewSubject') }}" method="get" class="flex flex-col items-center justify-center bg-[#DCDCE1] border-2 border-gray-300 rounded-lg shadow-lg p-10 w-[450px]">
+                        <div class="text-center w-full">
+                            <h3 class="text-3xl font-bold text-gray-700 mb-6">Nie masz jeszcze żadnych przedmiotów</h3>
+                            <p class="text-lg text-gray-700 mb-8">Dodaj je tutaj</p>
+                        </div>
+                        <button class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-3 focus:outline-none">
+                            Dodaj przedmiot
+                        </button>
+                    </form>
+                </section>
+
+            @endif
+        @foreach($subjects as $subject)
                 <div class="flex flex-wrap -mx-2 mb-4">
                     <div class="w-full md:w-3/5 px-2 mb-4 md:mb-0">
                         <div class="flex flex-col items-center justify-center border-2 rounded-lg p-3 bg-[#DCDCE1] shadow-lg h-full">
@@ -26,10 +40,20 @@
                                         <div>
                                             <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
                                             <input type="number" id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
+                                            @if ($errors->has('weight'))
+                                                <div class="text-red-500 text-sm mt-2">
+                                                    {{ $errors->first('weight') }}
+                                                </div>
+                                            @endif
                                         </div>
                                         <div>
                                             <label for="grade" class="block text-sm font-medium text-gray-700">Ocena</label>
                                             <input type="number" id="grade" name="grade" class="mt-1 block bg-[#F9FAFB] w-full border-gray-300 rounded-md shadow-sm">
+                                            @if ($errors->has('grade'))
+                                                <div class="text-red-500 text-sm mt-2">
+                                                    {{ $errors->first('grade') }}
+                                                </div>
+                                            @endif
                                         </div>
                                         <button type="submit" class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                                             Dodaj
@@ -57,13 +81,12 @@
                     </div>
                 </div>
             @endforeach
-            @auth
-                <div class="h-[400px] w-3/5 flex items-center justify-center bg-gray-50 glassEffect">elo</div>
-            @endauth
+
+
         </div>
     </div>
+    elo
 </div>
-
 <script>
     let grades = document.getElementsByClassName('grade-span');
     Array.from(grades).forEach(e => {
