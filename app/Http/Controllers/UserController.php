@@ -113,9 +113,8 @@ class UserController extends Controller
         $user = Auth::user();
 
         if ($request->filled('minimal_average')) {
-            $user->grades()->update([
-                'minimal_avg' => $request->input('minimal_average'),
-            ]);
+            $user->minimal_avg = $request->minimal_average;
+            $user->save();
         }
 
         $user->update([
@@ -150,7 +149,7 @@ class UserController extends Controller
         return redirect(route('homePage'));
     }
     public function account(){
-        $minimal_average = Grade::where('user_id', Auth::user()->id)->value('minimal_avg');
+        $minimal_average = \auth()->user()->minimal_avg;
         return view('account')->with(['minimalAverage' => $minimal_average]);
     }
 

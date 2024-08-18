@@ -35,7 +35,7 @@
     <!-- Minimal Average Input -->
     <div class="mb-5">
         <label class="block mb-2 text-sm font-medium text-gray-700">Minimalna średnia</label>
-        <input type="text" name="minimal_average" value="{{$minimalAverage}}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+        <input type="text" name="minimal_average" value="{{$minimalAverage}}" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Pamiętaj wcześniej dodać oceny"/>
         @error('minimal_average')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror

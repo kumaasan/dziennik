@@ -23,10 +23,10 @@ class SubjectController extends Controller
 
         $grades = Grade::select('grade', 'subject_id', 'weight')->get();
 
-        if ($grades->isEmpty()) {
-            $floorAvg = 0;
-            return view('allSubjects')->with('subjects', $subjects)->with('floorAvg', $floorAvg);
-        }
+//        if ($grades->isEmpty()) {
+//            $floorAvg = 0;
+//            return view('allSubjects')->with('subjects', $subjects)->with('floorAvg', $floorAvg);
+//        }
 
         foreach ($subjects as $subject) {
             $sum = 0;
@@ -35,14 +35,17 @@ class SubjectController extends Controller
                 $sum += $grade->grade * $grade->weight;
                 $count += 1 * $grade->weight;
             }
-            if($count)
+            if($count) {
                 $subject->average = round($sum / $count, 2);
+                $isPassing = $subject->average > auth()->user()->minimal_avg;
+                $subject->isPassing = $isPassing;
+            }
             else
                 $subject->average = 0;
         }
 
-        $ammount = Subject::where('user_id', Auth::user()->id)->count();
-        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName, 'ammount' => $ammount]);
+        $amount = Subject::where('user_id', Auth::user()->id)->count();
+        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName, 'amount' => $amount, 'isPassing' => $isPassing]);
     }
 
     public function addNew(Request $request){
@@ -79,4 +82,5 @@ class SubjectController extends Controller
         }
         return redirect()->back();
     }
+
 }

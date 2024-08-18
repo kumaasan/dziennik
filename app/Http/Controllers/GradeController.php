@@ -23,7 +23,7 @@ class GradeController extends Controller
         $grade->grade = $request->input('grade');
         $grade->save();
         $avg = $this->calcAvg();
-        return redirect()->back()->with('avg', $avg);
+        return redirect()->back()->with(['avg' => $avg]);
     }
     public function calcAvg(){
         $grades = Grade::select('grade', 'weight')->get();
@@ -38,6 +38,5 @@ class GradeController extends Controller
         $avg = $avg / $count;
         $avg += round($avg, 2);
         return $avg;
-
     }
 }

@@ -9,12 +9,12 @@
 <body class="bg-[url('../../public/background/background.svg')]">
 <x-sidebar></x-sidebar>
 <div class="flex">
-    @if($ammount != 0)
+    @if($amount != 0)
         <div class="flex-shrink-0 w-64"></div>
     @endif
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
         <div class="w-full max-w-4xl">
-            @if($ammount == 0)
+            @if($amount == 0)
                 <section class="flex flex-grow items-center justify-center ml-64">
                     <form action="{{ route('subject.addNewSubject') }}" method="get" class="flex flex-col items-center justify-center bg-[#DCDCE1] border-2 border-gray-300 rounded-lg shadow-lg p-10 w-[450px]">
                         <div class="text-center w-full">
@@ -73,19 +73,20 @@
                             </div>
                             <span class="hidden" id="grade-weight"></span>
                             <h2 class="text-2xl font-bold text-gray-700 mb-4">Średnia:</h2>
+                            @if($subject->isPassing)
                             <p class="text-2xl font-bold text-green-500 mb-4">@if($subject->average >0) {{$subject->average}} @endif</p>
-                            <button type="button" class="w-full mt-5 text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
+                            @else
+                                <p class="text-2xl font-bold text-red-500 mb-4">@if($subject->average >0) {{$subject->average}} @endif</p>
+                            @endif
+                                <button type="button" class="w-full mt-5 text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                                 Edytuj
                             </button>
                         </div>
                     </div>
                 </div>
             @endforeach
-
-
         </div>
     </div>
-    elo
 </div>
 <script>
     let grades = document.getElementsByClassName('grade-span');
