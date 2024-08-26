@@ -1,4 +1,4 @@
-<form class="w-3/5 mx-auto bg-[#DCDCE2] rounded-lg shadow-lg px-8 pb-8 space-y-6" method="post" action="{{route('account.update')}}">
+<form class="w-3/5 bg-[#DCDCE2] rounded-lg shadow-lg px-8 pb-8 space-y-6" method="post" action="{{route('account.update')}}">
     @csrf
     @method('patch')
     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-700 md:text-2xl mb-6">

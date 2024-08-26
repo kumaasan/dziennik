@@ -7,12 +7,12 @@
     <title>Logowanie</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[url('../../public/background/background.svg')] h-screen flex">
+<body class="bg-[url('../../public/background/background.svg')]">
 
 <x-sidebar></x-sidebar>
 
-<section class="flex flex-grow items-center justify-center ml-64">
-    <div class="w-full max-w-xl bg-[#DCDCE2] rounded-lg shadow-lg p-8">
+<section class="flex flex-grow items-center w-full h-screen justify-center max-lg:p-8">
+    <div class="w-full max-w-xl bg-[#DCDCE2] rounded-lg shadow-lg mb-16 p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-700 md:text-2xl mb-6">
             Zaloguj się
         </h1>

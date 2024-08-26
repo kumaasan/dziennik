@@ -1,77 +1,51 @@
-<div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto flex flex-col glassEffect">
-    <div>
-        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
-        <div class="py-4 overflow-y-auto">
-            <ul class="space-y-2 font-medium">
-                <li>
-                    <a href="{{route('homePage')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="ms-3">Strona główna</span>
-                    </a>
+<header class="backdrop-blur-lg backdrop-filter bg-white/10 max-lg:backdrop-filter max-lg:backdrop-blur-lg max-lg:bg-white/10 text-white">
+    <nav class="flex items-center justify-between px-12 h-16 lg:gap-8 py-12">
+        <img src="{{asset('logo.svg')}}" alt="logo" class="w-20 invert-color">
+
+        <div class="dropdownMenu max-lg:hidden absolute top-24 left-0 max-lg:rounded-b-2xl max-lg:z-50 max-lg:bg-white/10 max-lg:backdrop-filter max-lg:backdrop-blur-lg w-full flex flex-col gap-6 items-center py-2 text-lg font-bold lg:static lg:flex-row lg:justify-around">
+            <ul class="flex flex-col items-center gap-6 lg:flex-row lg:gap-8">
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                    <a href="{{route('homePage')}}">Strona główna</a>
                 </li>
-                <li class="relative">
-                    <a href="{{route('subject.showAll')}}" class="flex items-center justify-between w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <div class="flex items-center">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                            </svg>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Wszytskie przedmioty</span>
-                        </div>
-                    </a>
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                    <a href="{{route('subject.showAll')}}">Wszystkie przedmioty</a>
                 </li>
-                <li>
-                    <a href="{{route('subject.addNewSubject')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Edytuj przedmioty</span>
-                    </a>
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                    <a href="{{route('subject.addNewSubject')}}">Edytuj przedmioty</a>
                 </li>
-                <li>
-                    <a href="{{route('account.show')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Konto</span>
-                    </a>
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                    <a href="{{route('account.show')}}">Konto</a>
                 </li>
             </ul>
+
+            <div class="flex flex-row items-center lg:flex-row">
+                @guest
+                    <button class="px-4 py-2 whitespace-nowrap rounded-l-xl text-white m-0 bg-red-500 hover:bg-red-600 transition">
+                        <a href="{{route('loginPage')}}">Zaloguj się</a>
+                    </button>
+                    <button class="px-4 whitespace-nowrap py-2 rounded-r-xl bg-orange-500 transition">
+                        <a href="{{route('create.account.form')}}">Stwórz konto</a>
+                    </button>
+                @endguest
+
+                @auth
+                    <button class="px-4 py-2 rounded-lg text-white bg-red-500 hover:bg-red-600 transition">
+                        <a href="{{route('logout')}}">Wyloguj się</a>
+                    </button>
+                @endauth
+            </div>
         </div>
-    </div>
-    <div class="mt-auto">
-        <div>
-            @guest
-                <div>
-                    <a href="{{route('loginPage')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Zaloguj sie</span>
-                    </a>
-                </div>
-            @endguest
-            @guest
-                <div>
-                    <a href="{{route('create.account.form')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Stwórz konto</span>
-                    </a>
-                </div>
-            @endguest
-            @auth
-                <div>
-                    <a href="{{route('logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Wyloguj sie</span>
-                    </a>
-                </div>
-            @endauth
+
+        <div class="toggleButton cursor-pointer lg:hidden">
+            <svg class="size-12 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+            </svg>
         </div>
-    </div>
-</div>
+    </nav>
+</header>
+
+<script>
+    document.querySelector('.toggleButton').addEventListener('click', function() {
+        document.querySelector('.dropdownMenu').classList.toggle('max-lg:hidden');
+    });
+</script>

@@ -23,15 +23,13 @@ class SubjectController extends Controller
 
         $grades = Grade::select('grade', 'subject_id', 'weight')->get();
 
-//        if ($grades->isEmpty()) {
-//            $floorAvg = 0;
-//            return view('allSubjects')->with('subjects', $subjects)->with('floorAvg', $floorAvg);
-//        }
+        // Initialize $isPassing before the loop
+        $isPassing = null;
 
         foreach ($subjects as $subject) {
             $sum = 0;
             $count = 0;
-            foreach ($subject->grades as $grade){
+            foreach ($subject->grades as $grade) {
                 $sum += $grade->grade * $grade->weight;
                 $count += 1 * $grade->weight;
             }
@@ -39,13 +37,21 @@ class SubjectController extends Controller
                 $subject->average = round($sum / $count, 2);
                 $isPassing = $subject->average > auth()->user()->minimal_avg;
                 $subject->isPassing = $isPassing;
-            }
-            else
+            } else {
                 $subject->average = 0;
+                $isPassing = 0;
+            }
         }
 
-        $amount = Subject::where('user_id', Auth::user()->id)->count();
-        return view('allSubjects')->with(['subjects' => $subjects, 'subjectName' => $subjectName, 'amount' => $amount, 'isPassing' => $isPassing]);
+        // Initialize $amount to avoid errors when no subjects exist
+        $amount = Subject::where('user_id', $userId)->count();
+
+        return view('allSubjects')->with([
+            'subjects' => $subjects,
+            'subjectName' => $subjectName,
+            'amount' => $amount,
+            'isPassing' => $isPassing
+        ]);
     }
 
     public function addNew(Request $request){

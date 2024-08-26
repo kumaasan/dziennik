@@ -9,13 +9,10 @@
 <body class="bg-[url('../../public/background/background.svg')]">
 <x-sidebar></x-sidebar>
 <div class="flex">
-    @if($amount != 0)
-        <div class="flex-shrink-0 w-64"></div>
-    @endif
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
         <div class="w-full max-w-4xl">
             @if($amount == 0)
-                <section class="flex flex-grow items-center justify-center ml-64">
+                <section class="flex flex-grow items-center justify-center">
                     <form action="{{ route('subject.addNewSubject') }}" method="get" class="flex flex-col items-center justify-center bg-[#DCDCE1] border-2 border-gray-300 rounded-lg shadow-lg p-10 w-[450px]">
                         <div class="text-center w-full">
                             <h3 class="text-3xl font-bold text-gray-700 mb-6">Nie masz jeszcze żadnych przedmiotów</h3>
