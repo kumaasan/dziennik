@@ -11,29 +11,30 @@
 <div class="flex">
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
         <div class="w-full max-w-4xl">
-            @if($amount == 0)
+            @if($amountOfGrades == 0)
                 <section class="flex flex-grow items-center justify-center">
                     <form action="{{ route('subject.addNewSubject') }}" method="get" class="flex flex-col items-center justify-center bg-[#DCDCE1] border-2 border-gray-300 rounded-lg shadow-lg p-10 w-[450px]">
                         <div class="text-center w-full">
-                            <h3 class="text-3xl font-bold text-gray-700 mb-6">Nie masz jeszcze żadnych przedmiotów</h3>
+                            <h3 class="text-3xl font-bold text-gray-700 mb-6">Nie masz jeszcze żadnych ocen</h3>
                             <p class="text-lg text-gray-700 mb-8">Dodaj je tutaj</p>
                         </div>
-                        <button class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-3 focus:outline-none">
-                            Dodaj przedmiot
-                        </button>
+                        <a href="{{route('subject.showAll')}}" class="w-full flex items-center justify-center text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-3 focus:outline-none">
+                            Dodaj oceny
+                        </a>
                     </form>
                 </section>
+            @else
 
-            @endif
-        @foreach($subjects as $subject)
+            @foreach($subjects as $subject)
                 <div class="flex flex-wrap -mx-2 mb-4">
                     <div class="w-full md:w-3/5 px-2 mb-4 md:mb-0">
                         <div class="flex flex-col items-center justify-center border-2 rounded-lg p-3 bg-[#DCDCE1] shadow-lg h-full">
                             <h2 class="text-2xl font-bold text-gray-700 mb-4">{{$subject->name}}</h2>
                             <div class="flex gap-3 w-full">
                                 <div class="flex-1">
-                                    <form action="{{route('addGrade', ['subject_id' =>  $subject->id]) }}" method="post" class="flex flex-col gap-3 w-full">
+                                    <form action="{{route('delete.grade')}}" method="post" class="flex flex-col gap-3 w-full">
                                         @csrf
+                                        @method('DELETE')
                                         <div>
                                             <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
                                             <input type="number" id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
@@ -52,8 +53,17 @@
                                                 </div>
                                             @endif
                                         </div>
+                                        <div>
+                                            <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+                                            <input type="number" id="id" name="id" class="mt-1 block bg-[#F9FAFB] w-full border-gray-300 rounded-md shadow-sm">
+                                            @if ($errors->has('grade'))
+                                                <div class="text-red-500 text-sm mt-2">
+                                                    {{ $errors->first('grade') }}
+                                                </div>
+                                            @endif
+                                        </div>
                                         <button type="submit" class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
-                                            Dodaj
+                                            Usuń ocenę
                                         </button>
                                     </form>
                                 </div>
@@ -63,25 +73,16 @@
                     <div class="w-full md:w-2/5 px-2">
                         <div class="flex flex-col items-center justify-center border-2 rounded-lg p-3 bg-[#DCDCE1] shadow-lg h-full">
                             <h2 class="text-2xl font-bold text-gray-700 mb-4">Oceny:</h2>
-                            <div class="flex flex-wrap gap-1 h-full items-center justify-center">
+                            <div class="flex items-center justify-center flex-wrap gap-1 h-full mb-2">
                                 @foreach($subject->grades as $grade)
                                     <span weight="{{$grade->weight}}" gradeId="{{$grade->id}}" class="grade-span bg-[#F9FAFB] rounded-full px-3 py-1">{{ $grade->grade }}</span>
                                 @endforeach
                             </div>
-                            <span class="hidden" id="grade-weight"></span>
-                            <h2 class="text-2xl font-bold text-gray-700 mb-4">Średnia:</h2>
-                            @if($subject->isPassing)
-                            <p class="text-2xl font-bold text-green-500 mb-4">@if($subject->average >0) {{$subject->average}} @endif</p>
-                            @else
-                                <p class="text-2xl font-bold text-red-500 mb-4">@if($subject->average >0) {{$subject->average}} @endif</p>
-                            @endif
-                            <a href="{{ route('edit.grade') }}" class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none text-center">
-                                Edytuj
-                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
+            @endif
         </div>
     </div>
 </div>
@@ -97,15 +98,16 @@
         <p>{{session('gradeDeleteFail')}}</p>
     </div>
 @endif
+
+
 <script>
     let grades = document.getElementsByClassName('grade-span');
     Array.from(grades).forEach(e => {
         e.addEventListener('click', function(){
-            Swal.fire('Waga oceny: ' + e.getAttribute('weight'));
-            console.log(e.getAttribute('gradeId'))
+            Swal.fire('Waga oceny: ' + e.getAttribute('weight') + '\n' + 'Id oceny: '  + e.getAttribute('gradeId' ));
         })
     });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

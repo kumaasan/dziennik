@@ -23,7 +23,6 @@ class SubjectController extends Controller
 
         $grades = Grade::select('grade', 'subject_id', 'weight')->get();
 
-        // Initialize $isPassing before the loop
         $isPassing = null;
 
         foreach ($subjects as $subject) {
@@ -43,7 +42,6 @@ class SubjectController extends Controller
             }
         }
 
-        // Initialize $amount to avoid errors when no subjects exist
         $amount = Subject::where('user_id', $userId)->count();
 
         return view('allSubjects')->with([
@@ -52,6 +50,19 @@ class SubjectController extends Controller
             'amount' => $amount,
             'isPassing' => $isPassing
         ]);
+    }
+
+    public function editGrades()
+    {
+        $this->showSubjectPage();
+        $userId = Auth::id();
+        $amountOfGrades = Grade::where('user_id', $userId)->count();
+
+
+        return view('editGrade')->with(['grades', Grade::where('user_id', $userId)->get(),
+            'subjects' => Subject::where('user_id', $userId)->get(),
+            'amountOfGrades' => $amountOfGrades,
+            ]);
     }
 
     public function addNew(Request $request){
@@ -87,6 +98,19 @@ class SubjectController extends Controller
             session()->flash('deleted', 'Pomyślnie usunięto przedmiot');
         }
         return redirect()->back();
+    }
+
+    public function homeController()
+    {
+        $userId = auth::id();
+
+        $grade = Grade::where('user_id', $userId)->get();
+        $subject = Subject::where('user_id', $userId)->get();
+
+        return view('home')->with([
+            'subjects' => $subject,
+            'grades' => $grade
+        ]);
     }
 
 }

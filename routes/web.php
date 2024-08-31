@@ -4,10 +4,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('homePage');
-
+Route::get('/', [SubjectController::class, 'homeController'] )->name('homePage');
 
 Route::get('/przedmioty', [\App\Http\Controllers\SubjectController::class, 'showAllSubjects'])->name('subject');
 
@@ -40,3 +37,9 @@ Route::get('/konto', [UserController::class, 'account'])->name('account.show')->
 Route::patch('/konto/edytuj', [UserController::class, 'updateAccount'])->name('account.update')->middleware('auth');
 #change password
 Route::patch('/konto/zmienHaslo', [UserController::class, 'changePassword'])->name('account.changePassword')->middleware('auth');
+
+Route::view('/edytujOceny', 'editGrade')->name('edit.grade')->middleware('auth');
+
+Route::get('/edytujOceny', [SubjectController::class, 'editGrades'])->name('edit.grade')->middleware('auth');
+
+Route::delete('edytujOceny', [\App\Http\Controllers\GradeController::class, 'deleteGrade'])->name('delete.grade')->middleware('auth');

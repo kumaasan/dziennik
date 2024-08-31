@@ -1,35 +1,37 @@
 <header class="backdrop-blur-lg backdrop-filter bg-white/10 max-lg:backdrop-filter max-lg:backdrop-blur-lg max-lg:bg-white/10 text-white">
     <nav class="flex items-center justify-between px-12 h-16 lg:gap-8 py-12">
-        <img src="{{asset('logo.svg')}}" alt="logo" class="w-20 invert-color">
+        <a href="{{route('homePage')}}">
+            <img src="{{asset('logo.svg')}}" alt="logo" class="w-20 invert-color">
+        </a>
 
         <div class="dropdownMenu max-lg:hidden absolute top-24 left-0 max-lg:rounded-b-2xl max-lg:z-50 max-lg:bg-white/10 max-lg:backdrop-filter max-lg:backdrop-blur-lg w-full flex flex-col gap-6 items-center py-2 text-lg font-bold lg:static lg:flex-row lg:justify-around">
             <ul class="flex flex-col items-center gap-6 lg:flex-row lg:gap-8">
-                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400 hover:scale-105 transition-all">
                     <a href="{{route('homePage')}}">Strona główna</a>
                 </li>
-                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400 hover:scale-105 transition-all">
                     <a href="{{route('subject.showAll')}}">Wszystkie przedmioty</a>
                 </li>
-                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400 hover:scale-105 transition-all">
                     <a href="{{route('subject.addNewSubject')}}">Edytuj przedmioty</a>
                 </li>
-                <li class="whitespace-nowrap hover:underline hover:text-gray-400">
+                <li class="whitespace-nowrap hover:underline hover:text-gray-400 hover:scale-105 transition-all">
                     <a href="{{route('account.show')}}">Konto</a>
                 </li>
             </ul>
-
-            <div class="flex flex-row items-center lg:flex-row">
+            <div class="flex flex-row items-center gap-x-2 max-lg:pb-8 lg:flex-row">
                 @guest
-                    <button class="px-4 py-2 whitespace-nowrap rounded-l-xl text-white m-0 bg-red-500 hover:bg-red-600 transition">
-                        <a href="{{route('loginPage')}}">Zaloguj się</a>
+                    <button type="button" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:scale-105 transition-all">
+                        <a href="{{route('login')}}">Zaloguj się</a>
                     </button>
-                    <button class="px-4 whitespace-nowrap py-2 rounded-r-xl bg-orange-500 transition">
-                        <a href="{{route('create.account.form')}}">Stwórz konto</a>
+                    <button type="button" class="rounded-md bg-transparent border-[1px] border-white text-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:scale-105 transition-all">
+                        <a href="{{route('create.account.form')}}">Zarejestruj się</a>
                     </button>
+
                 @endguest
 
                 @auth
-                    <button class="px-4 py-2 rounded-lg text-white bg-red-500 hover:bg-red-600 transition">
+                    <button class="rounded-md bg-transparent border-[1px] border-white text-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:scale-105 transition-all">
                         <a href="{{route('logout')}}">Wyloguj się</a>
                     </button>
                 @endauth
@@ -47,5 +49,15 @@
 <script>
     document.querySelector('.toggleButton').addEventListener('click', function() {
         document.querySelector('.dropdownMenu').classList.toggle('max-lg:hidden');
+    });
+
+    document.addEventListener('click', function(event) {
+        const dropdownMenu = document.querySelector('.dropdownMenu');
+        const toggleButton = document.querySelector('.toggleButton');
+        const isClickInside = dropdownMenu.contains(event.target) || toggleButton.contains(event.target);
+
+        if (!isClickInside) {
+            dropdownMenu.classList.add('max-lg:hidden');
+        }
     });
 </script>

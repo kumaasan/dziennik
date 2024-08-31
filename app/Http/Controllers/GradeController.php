@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SubjectController;
+use Illuminate\Support\Facades\Auth;
 
 class GradeController extends Controller
 {
@@ -38,5 +40,25 @@ class GradeController extends Controller
         $avg = $avg / $count;
         $avg += round($avg, 2);
         return $avg;
+    }
+
+    public function deleteGrade()
+    {
+        $userId = Auth::id();
+        $grade = Grade::where('user_id', $userId)
+            ->where('weight', request('weight'))
+            ->where('grade', request('grade'))
+            ->where('id', request('id'))
+            ->first();
+
+        if($grade){
+            $grade->delete();
+            session()->flash('gradeDeleted', 'Ocene usunięto pomyślnie');
+        }
+        else{
+            session()->flash('gradeDeleteFail', 'Nie udało się usunać oceny');
+        }
+        return redirect()->back();
+
     }
 }
