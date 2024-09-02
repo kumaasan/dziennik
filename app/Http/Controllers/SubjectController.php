@@ -40,6 +40,7 @@ class SubjectController extends Controller
                 $subject->average = 0;
                 $isPassing = 0;
             }
+
         }
 
         $amount = Subject::where('user_id', $userId)->count();
@@ -54,7 +55,6 @@ class SubjectController extends Controller
 
     public function editGrades()
     {
-        $this->showSubjectPage();
         $userId = Auth::id();
         $amountOfGrades = Grade::where('user_id', $userId)->count();
 

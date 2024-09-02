@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('subject_id');
             $table->foreignId('user_id');
+            $table->integer('average')->nullable();
             $table->integer('weight');
             $table->integer('grade');
             $table->timestamps();
