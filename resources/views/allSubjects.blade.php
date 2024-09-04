@@ -6,7 +6,7 @@
     <title>Wszystkie przedmioty</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[url('../../public/background/background.svg')]">
+<body class="bg-[url('../../public/background/background.svg')] ">
 <x-sidebar></x-sidebar>
 <div class="flex">
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">

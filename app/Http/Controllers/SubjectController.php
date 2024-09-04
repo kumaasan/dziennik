@@ -12,19 +12,9 @@ class SubjectController extends Controller
 {
     public function showAllSubjects(){
         $subjects = Subject::all();
-
         return view('subjects')->with('subjects', $subjects);
     }
-
-    public function showSubjectPage(){
-        $userId = Auth::user()->id;
-        $subjects = Subject::where('user_id', $userId)->get();
-        $subjectName = $subjects->pluck('name');
-
-        $grades = Grade::select('grade', 'subject_id', 'weight')->get();
-
-        $isPassing = null;
-
+    public function countAverage($subjects){
         foreach ($subjects as $subject) {
             $sum = 0;
             $count = 0;
@@ -42,6 +32,19 @@ class SubjectController extends Controller
             }
 
         }
+        return $subjects;
+    }
+    
+
+    public function showSubjectPage(){
+        $userId = Auth::user()->id;
+        $subjects = Subject::where('user_id', $userId)->get();
+        $subjectName = $subjects->pluck('name');
+
+        $subjects = $this->countAverage($subjects);
+        $grades = Grade::select('grade', 'subject_id', 'weight')->get();
+
+        $isPassing = null;
 
         $amount = Subject::where('user_id', $userId)->count();
 
@@ -103,13 +106,16 @@ class SubjectController extends Controller
     public function homeController()
     {
         $userId = auth::id();
-
         $grade = Grade::where('user_id', $userId)->get();
-        $subject = Subject::where('user_id', $userId)->get();
+        $subjects = Subject::where('user_id', $userId)->get();
+        $subjects = $this->countAverage($subjects);
+
+        $isPassing = null;
 
         return view('home')->with([
-            'subjects' => $subject,
-            'grades' => $grade
+            'subjects' => $subjects,
+            'grades' => $grade,
+            'isPassing' => $isPassing
         ]);
     }
 
