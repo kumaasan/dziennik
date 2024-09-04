@@ -18,6 +18,7 @@ class SubjectController extends Controller
         foreach ($subjects as $subject) {
             $sum = 0;
             $count = 0;
+            $isPassing = null;
             foreach ($subject->grades as $grade) {
                 $sum += $grade->grade * $grade->weight;
                 $count += 1 * $grade->weight;
@@ -34,17 +35,17 @@ class SubjectController extends Controller
         }
         return $subjects;
     }
-    
+
 
     public function showSubjectPage(){
         $userId = Auth::user()->id;
         $subjects = Subject::where('user_id', $userId)->get();
         $subjectName = $subjects->pluck('name');
+        $isPassing = null;
 
         $subjects = $this->countAverage($subjects);
         $grades = Grade::select('grade', 'subject_id', 'weight')->get();
 
-        $isPassing = null;
 
         $amount = Subject::where('user_id', $userId)->count();
 
@@ -108,9 +109,9 @@ class SubjectController extends Controller
         $userId = auth::id();
         $grade = Grade::where('user_id', $userId)->get();
         $subjects = Subject::where('user_id', $userId)->get();
+        $isPassing = 0;
         $subjects = $this->countAverage($subjects);
 
-        $isPassing = null;
 
         return view('home')->with([
             'subjects' => $subjects,

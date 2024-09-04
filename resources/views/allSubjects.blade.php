@@ -6,7 +6,7 @@
     <title>Wszystkie przedmioty</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[url('../../public/background/background.svg')] ">
+<body class="bg-[url('../../public/background/background.svg')]  ">
 <x-sidebar></x-sidebar>
 <div class="flex">
     <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-
+<x-footer></x-footer>
 @if(session()->has('deletedGrade'))
     <div class="fixed bg-blue-900 text-white py-5 px-4 rounded-xl bottom-3 right-3 text-sm">
         <p>{{session('deletedGrade')}}</p>
