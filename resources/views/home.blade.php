@@ -9,67 +9,68 @@
 </head>
 <body class="bg-[url('../../public/background/background.svg')] select-none">
 
-<div class=" w-full h-screen">
+<div class=" w-full h-screen space-y-20">
     <x-sidebar></x-sidebar>
-    <div class="container mx-auto space-y-10 p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div class="kpi-item bg-blue-500 text-white p-4 rounded-lg shadow">
-                <h2 class="text-xl max-lg:flex max-lg:justify-center font-semibold">Ilość przedmiotów</h2>
-                @auth
-                    <p class="text-3xl max-lg:flex max-lg:justify-center font-bold">{{$subjects->count()}}</p>
-                @endauth
-                @guest
-                    <p class="text-3xl max-lg:flex max-lg:justify-center font-bold">Brak</p>
-
-                @endguest
-            </div>
-            <div class="kpi-item bg-green-500 max-lg:flex max-lg:justify-center text-white p-4 rounded-lg shadow">
-                @auth
-                    <h2 class="text-3xl font-bold">
-                        Witaj {{auth()->user()->first_name}} {{auth()->user()->last_name}}</h2>
-                @endauth
-                @guest
-                    <h2 class="text-3xl font-bold">Konto gościa</h2>
-                @endguest
-            </div>
-            <div class="kpi-item bg-yellow-500 text-white p-4 rounded-lg shadow">
-                <h2 class="text-xl max-lg:flex max-lg:justify-center font-semibold">Średnia roczna</h2>
-                @auth
-                <p class="text-3xl max-lg:flex max-lg:justify-center font-bold">4.20</p>
-                @endauth
-                @guest
-                    <p class="text-3xl max-lg:flex max-lg:justify-center font-bold">Brak</p>
-                @endguest
+    <div class="container mx-auto lg:space-y-20 mt-20 max-lg:space-y-10 p-4">
+        <div class=" gap-4 mb-6">
+            <div class="kpi-item bg-white text-white p-4 rounded-lg shadow ">
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight text-center">
+                    @auth Witaj {{auth()->user()->first_name}}!@endauth
+                    @guest Używasz konta gościa! @endguest
+                </h2>
+                <p class="text-gray-900 text-center mt-4">Twoja Średnia: {{$finalAverage}}</p>
             </div>
         </div>
         @auth()
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            @foreach($subjects->take(3) as $subject)
-                <div class="subject-item bg-white p-4 rounded-lg shadow transition-colors">
-                    <h3 class="text-lg max-lg:flex max-lg:justify-center font-medium text-gray-700">{{$subject->name}}</h3>
-                    <p class=" max-lg:flex max-lg:justify-center @if($subject->isPassing) text-green-500 @else text-red-700 @endif">Średnia: {{$subject->average}}</p>
-                </div>
-            @endforeach
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 @if(count($subjects) <= 2) lg:grid-cols-2 @endif @if(count($subjects) <= 1) lg:grid-cols-1 @endif gap-4  mb-6 lower">
+            @if(count($subjects) <= 2)
+                @foreach($subjects as $subject)
+                    <div class="subject-item flex flex-col gap-y-1 text-center bg-white p-3   rounded-lg shadow transition-colors">
+                        <h3 class="text-3xl font-semibold text-center max-lg:flex max-lg:justify-center uppercase text-gray-700">{{$subject->name}}</h3>
+                        <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: {{$subject->amountOfGrades}} </p>
+                        <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa: {!! $subject->final_grade !!}</p>
+                        <p class=" max-lg:flex font-medium max-lg:justify-center @if($subject->isPassing) text-green-500 @else text-red-700 @endif @if($subject->isPassing == 0) text-black @endif">Średnia: {{$subject->average}}</p>
+                    </div>
+                @endforeach
+            @else
+                @foreach($subjects as $subject)
+                    <div class="subject-item flex flex-col gap-y-1 text-center bg-white p-3   rounded-lg shadow transition-colors">
+                        <h3 class="text-3xl font-semibold text-center max-lg:flex max-lg:justify-center uppercase text-gray-700">{{$subject->name}}</h3>
+                        <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: {{$subject->amountOfGrades}} </p>
+                        <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa: {!! $subject->final_grade !!}</p>
+                        <p class=" max-lg:flex font-medium max-lg:justify-center @if($subject->isPassing) text-green-500 @else text-red-700 @endif @if($subject->isPassing == 0) text-black @endif">Średnia: {{$subject->average}}</p>
+                    </div>
+                @endforeach
+            @endif
         </div>
         @endauth
         @guest
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                 <div class="subject-item bg-white p-4 rounded-lg shadow transition-colors">
-                    <h3 class="text-lg font-medium text-gray-700">Przedmiot</h3>
-                    <p class="text-gray-700">Średnia: Brak</p>
+                    <h3 class="text-lg font-medium text-gray-700">Przedmiot: </h3>
+                    <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: </p>
+                    <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa:</p>
+                    <p class=" max-lg:flex font-medium max-lg:justify-center">Średnia:</p>
+                    <p class="text-gray-700">Średnia: </p>
                 </div>
                 <div class="subject-item bg-white p-4 rounded-lg shadow transition-colors">
-                    <h3 class="text-lg font-medium text-gray-700">Przedmiot</h3>
-                    <p class="text-gray-700">Średnia: Brak</p>
+                    <h3 class="text-lg font-medium text-gray-700">Przedmiot: </h3>
+                    <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: </p>
+                    <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa:</p>
+                    <p class=" max-lg:flex font-medium max-lg:justify-center">Średnia:</p>
+                    <p class="text-gray-700">Średnia: </p>
                 </div>
                 <div class="subject-item bg-white p-4 rounded-lg shadow transition-colors">
-                    <h3 class="text-lg font-medium text-gray-700">Przedmiot</h3>
-                    <p class="text-gray-700">Średnia: Brak</p>
+                    <h3 class="text-lg font-medium text-gray-700">Przedmiot: </h3>
+                    <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: </p>
+                    <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa:</p>
+                    <p class=" max-lg:flex font-medium max-lg:justify-center">Średnia:</p>
+                    <p class="text-gray-700">Średnia: </p>
                 </div>
             </div>
         @endguest
-
     </div>
+    <x-footer></x-footer>
     @if(session()->has('success'))
         <div class="fixed bg-blue-900 text-white py-5 px-4 rounded-xl bottom-3 right-3 text-sm">
             <p>{{session('success')}}</p>

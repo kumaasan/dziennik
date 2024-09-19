@@ -77,7 +77,11 @@
                                 @foreach($subject->grades as $grade)
                                     <span weight="{{$grade->weight}}" gradeId="{{$grade->id}}" class="grade-span bg-[#F9FAFB] rounded-full px-3 py-1">{{ $grade->grade }}</span>
                                 @endforeach
+
                             </div>
+                            <a href="{{ route('subject.showAll') }}" class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none text-center">
+                                Zapisz
+                            </a>
                         </div>
                     </div>
                 </div>

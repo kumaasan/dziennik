@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('user_id')->constrained('users')->ondelete('cascade');
+            $table->integer('annual_average')->nullable();
             $table->timestamps();
         });
     }

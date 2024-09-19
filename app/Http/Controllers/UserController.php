@@ -112,6 +112,7 @@ class UserController extends Controller
     public function changePassword(Request $request)
     {
         $request->validate([
+            'email' => ['required', 'email', 'max:255', 'exists:users,email'],
             'new_password' => ['required_with:new_password_confirmed', 'same:new_password_confirmed', 'min:7'],
             'new_password_confirmed' => ['required', 'min:7']
         ]);

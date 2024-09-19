@@ -29,7 +29,7 @@
                 <div class="flex flex-wrap -mx-2 mb-4">
                     <div class="w-full md:w-3/5 px-2 mb-4 md:mb-0">
                         <div class="flex flex-col items-center justify-center border-2 rounded-lg p-3 bg-[#DCDCE1] shadow-lg h-full">
-                            <h2 class="text-2xl font-bold text-gray-700 mb-4">{{$subject->name}}</h2>
+                            <h2 class="text-2xl font-bold hover:underline hover:scale-105 transition-all text-gray-700 mb-4">{{$subject->name}}</h2>
                             <div class="flex gap-3 w-full">
                                 <div class="flex-1">
                                     <form action="{{route('addGrade', ['subject_id' =>  $subject->id]) }}" method="post" class="flex flex-col gap-3 w-full">

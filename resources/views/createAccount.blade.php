@@ -12,6 +12,8 @@
 
 <x-sidebar></x-sidebar>
 <x-create-account-form></x-create-account-form>
+<div class="my-20"></div>
+<x-footer></x-footer>
 
 </body>
 </html>

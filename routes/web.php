@@ -16,7 +16,7 @@ Route::get('/logowanie', function (){ return view('loginPage');})->name('loginPa
 
 Route::post('/logowanie', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
 
-Route::get('/konto/zmienHaslo',[UserController::class, 'resetPasswordForm'])->name('password.reset.form')->middleware('auth');
+Route::get('/konto/zmienHaslo',[UserController::class, 'resetPasswordForm'])->name('password.reset.form')->middleware('guest');
 
 Route::get('/logowanie/tworzenieKonta', [UserController::class, 'createAccountForm'])->name('create.account.form')->middleware('guest');
 
