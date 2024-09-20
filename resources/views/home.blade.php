@@ -7,7 +7,7 @@
     <title>Better dziennik</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[url('../../public/background/background.svg')] select-none">
+<body class="bg-[url('../../public/background/background.svg')]">
 
 <div class=" w-full h-screen space-y-20">
     <x-sidebar></x-sidebar>
@@ -18,7 +18,7 @@
                     @auth Witaj {{auth()->user()->first_name}}!@endauth
                     @guest Używasz konta gościa! @endguest
                 </h2>
-                <p class="text-gray-900 text-center mt-4">Twoja Średnia: {{$finalAverage}}</p>
+                <p class="text-gray-900 text-center mt-4">Twoja średnia roczna: {{$finalAverage}}</p>
             </div>
         </div>
         @auth()

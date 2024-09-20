@@ -40,9 +40,8 @@
             <button type="submit" class="w-full text-white bg-[#1e3a8a] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Zaloguj się</button>
 
             <div class="flex items-center justify-between">
-                <a href="{{ route('password.reset.form') }}" class="text-sm font-medium text-[#1e3a8a] hover:underline">Nie pamiętasz hasła?</a>
                 <div class="text-sm text-gray-700">
-                    Nie masz jeszcze konta? <a href="{{ route('create.account.form') }}" class="font-medium text-[#1e3a8a] hover:underline">Utwórz konto</a>
+                    Nie masz jeszcze konta? <a href="{{ route('create.account.form') }}" class="font-medium text-[#1e3a8a] hover:underline">Utwórz je!</a>
                 </div>
             </div>
         </form>
