@@ -1,10 +1,10 @@
-<header class="bg-[rgba(40,64,90,0.8)] max-lg:bg-[rgba(40,64,90,0.8)] max-lg:-webkit-backdrop-filter max-lg:-webkit-backdrop-blur-lg  max-lg:backdrop-filter max-lg:backdrop-blur-lg text-white">
+<header class="bg-[rgb(40,64,90)] max-lg:bg-[rgb(40,64,90)]  bg-opacity-80    text-white">
     <nav class="flex items-center justify-between px-12 h-16 lg:gap-8 py-12">
         <a href="{{route('homePage')}}">
             <img src="{{asset('logo.svg')}}" alt="logo" class="w-20 invert-color">
         </a>
 
-        <div class="dropdownMenu max-lg:hidden max-lg:bg-[rgba(40,64,90,0.8)] max-lg:-webkit-backdrop-filter max-lg:-webkit-backdrop-blur-lg absolute top-24 left-0 max-lg:rounded-b-2xl max-lg:z-50  max-lg:backdrop-filter max-lg:backdrop-blur-lg w-full flex flex-col gap-6 items-center py-2 text-lg font-bold lg:static lg:flex-row lg:justify-around">
+        <div class="dropdownMenu  max-lg:hidden bg-[rgb(40,64,90)] lg:bg-transparent bg-opacity-80 backdrop-filter backdrop-blur-xl    absolute top-24 left-0 max-lg:rounded-b-2xl max-lg:z-50  w-full flex flex-col gap-6 items-center py-2 text-lg font-bold lg:static lg:flex-row lg:justify-around">
             <ul class="flex flex-col items-center gap-6 lg:flex-row lg:gap-8">
                 <li class="whitespace-nowrap hover:underline hover:text-gray-400 hover:scale-105 transition-all">
                     <a href="{{route('homePage')}}">Strona główna</a>

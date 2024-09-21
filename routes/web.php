@@ -41,3 +41,5 @@ Route::view('/edytujOceny', 'editGrade')->name('edit.grade')->middleware('auth')
 Route::get('/edytujOceny', [SubjectController::class, 'editGrades'])->name('edit.grade')->middleware('auth');
 
 Route::delete('edytujOceny', [\App\Http\Controllers\GradeController::class, 'deleteGrade'])->name('delete.grade')->middleware('auth');
+
+Route::get('/kontakt', [UserController::class, 'showContactPage'])->name('contact.page');

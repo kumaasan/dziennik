@@ -9,10 +9,11 @@
 </head>
 <body class="bg-[url('../../public/background/background.svg')] select-none">
 <x-sidebar></x-sidebar>
-<div class="flex">
-    <div class=" mt-[-40px]  flex justify-center items-center w-full min-h-screen">
+<div class="flex flex-col">
+    <div class="flex justify-center items-center w-full min-h-screen">
         <x-edit-account-form :minimalAverage="$minimalAverage" />
     </div>
+    <x-footer></x-footer>
 </div>
 </body>
 </html>

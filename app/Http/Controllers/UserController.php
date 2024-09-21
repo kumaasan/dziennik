@@ -145,4 +145,9 @@ class UserController extends Controller
         return view('createAccount');
     }
 
+    public function showContactPage()
+    {
+        return view('contact');
+    }
+
 }
