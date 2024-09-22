@@ -40,7 +40,7 @@
                                             @method('DELETE')
                                             <div>
                                                 <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
-                                                <input type="number" id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
+                                                <input type="number" disabled id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
                                                 @if ($errors->has('weight'))
                                                     <div class="text-red-500 text-sm mt-2">
                                                         {{ $errors->first('weight') }}
@@ -49,14 +49,14 @@
                                             </div>
                                             <div>
                                                 <label for="grade" class="block text-sm font-medium text-gray-700">Ocena</label>
-                                                <input type="number" id="grade" name="grade" class="mt-1 block bg-[#F9FAFB] w-full border-gray-300 rounded-md shadow-sm">
+                                                <input type="number" disabled id="grade" name="grade" class="mt-1 block bg-[#F9FAFB] w-full border-gray-300 rounded-md shadow-sm">
                                                 @if ($errors->has('grade'))
                                                     <div class="text-red-500 text-sm mt-2">
                                                         {{ $errors->first('grade') }}
                                                     </div>
                                                 @endif
                                             </div>
-                                            <button type="button" disabled class="w-full text-white bg-gray-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
+                                            <button type="button" disabled class="w-full text-white bg-gray-500  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                                                 Dodaj
                                             </button>
                                         </form>
@@ -118,7 +118,7 @@
             icon: 'warning',
             showCancelButton: true,
             background: '#F9FAFB',
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#1e3a8a',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Tak, usuń',
             cancelButtonText: 'Anuluj'

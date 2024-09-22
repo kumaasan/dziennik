@@ -7,7 +7,7 @@
             <ul class="text-md flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-10 mb-10 border-b border-gray-200">
                 <li><a href="{{route('homePage')}}" class="text-white transform hover:underline hover:text-gray-400 hover:scale-105 transition-all">Strona główna</a></li>
                 <li><a href="{{route('account.show')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Konto</a></li>
-                <li><a href="#" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Oceny</a></li>
+                <li><a href="{{route('subject.showAll')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Oceny</a></li>
                 <li><a href="#" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Polityka prywatności</a></li>
                 <li><a href="{{route('contact.page')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Kontakt</a></li>
             </ul>

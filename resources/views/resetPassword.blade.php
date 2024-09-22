@@ -8,11 +8,13 @@
     <title>Konto</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')] select-none">
-<x-sidebar></x-sidebar>
-<div class="flex">
-    <div class="flex-grow flex justify-center items-center w-full min-h-screen p-4">
+
+<div class="flex flex-col min-h-screen gap-40">
+    <x-sidebar></x-sidebar>
+    <div class="flex-grow flex justify-center items-center w-full">
         <x-reset-password-form></x-reset-password-form>
     </div>
+    <x-footer />
 </div>
 </body>
 </html>

@@ -9,10 +9,13 @@
     <title>Kontakt</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')]">
-<x-sidebar></x-sidebar>
-<div class="flex justify-center items-center w-full min-h-screen">
-    <x-contact-form></x-contact-form>
+<div class="space-y-20">
+    <x-sidebar></x-sidebar>
+    <div class="flex justify-center items-center w-full ">
+        <x-contact-form></x-contact-form>
+    </div>
+    <x-footer></x-footer>
 </div>
-<x-footer></x-footer>
+
 </body>
 </html>
