@@ -10,10 +10,11 @@
 <body class="bg-[url('../../public/background/background.svg')] select-none">
 <x-sidebar></x-sidebar>
 <div class="flex flex-col">
-    <div class="flex justify-center items-center w-full min-h-screen">
+    <div class="flex justify-center items-center w-full h-screen md:mt-[-5%]">
         <x-edit-account-form :minimalAverage="$minimalAverage" />
     </div>
     <x-footer></x-footer>
 </div>
+
 </body>
 </html>

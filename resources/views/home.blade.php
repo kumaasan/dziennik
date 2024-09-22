@@ -22,8 +22,7 @@
             </div>
         </div>
         @auth()
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 @if(count($subjects) <= 2) lg:grid-cols-2 @endif @if(count($subjects) <= 1) lg:grid-cols-1 @endif gap-4  mb-6 lower">
-            @if(count($subjects) <= 2)
+        <div class="grid grid-cols-1 sm:grid-cols-2 @if(count($subjects) == 2)  lg:grid-cols-2  @elseif(count($subjects) == 1) lg:grid-cols-1 @else lg:grid-cols-3 @endif gap-4  mb-6 lower">
                 @foreach($subjects as $subject)
                     <div class="subject-item flex flex-col gap-y-1 text-center bg-white p-3   rounded-lg shadow transition-colors">
                         <h3 class="text-3xl font-semibold text-center max-lg:flex max-lg:justify-center uppercase text-gray-700">{{$subject->name}}</h3>
@@ -32,16 +31,6 @@
                         <p class=" max-lg:flex font-medium max-lg:justify-center @if($subject->isPassing) text-green-500 @else text-red-700 @endif @if($subject->isPassing == 0) text-black @endif">Średnia: {{$subject->average}}</p>
                     </div>
                 @endforeach
-            @else
-                @foreach($subjects as $subject)
-                    <div class="subject-item flex flex-col gap-y-1 text-center bg-white p-3   rounded-lg shadow transition-colors">
-                        <h3 class="text-3xl font-semibold text-center max-lg:flex max-lg:justify-center uppercase text-gray-700">{{$subject->name}}</h3>
-                        <p class="text-lg max-lg:flex max-lg:justify-center font-medium capitalize text-gray-700">Ilość ocen: {{$subject->amountOfGrades}} </p>
-                        <p class="text-lg max-lg:flex max-lg:justify-center capitalize font-medium text-gray-700">Ocena końcowa: {!! $subject->final_grade !!}</p>
-                        <p class=" max-lg:flex font-medium max-lg:justify-center @if($subject->isPassing) text-green-500 @else text-red-700 @endif @if($subject->isPassing == 0) text-black @endif">Średnia: {{$subject->average}}</p>
-                    </div>
-                @endforeach
-            @endif
         </div>
         @endauth
         @guest

@@ -9,7 +9,7 @@
     <title>Dodaj przedmioty</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')] h-screen flex flex-col">
-
+<div class="space-y-40">
 <x-sidebar></x-sidebar>
 
 <section class="flex flex-grow items-center justify-center max-lg:p-8">
@@ -47,6 +47,8 @@
         </form>
     </div>
 </section>
+    <x-footer></x-footer>
+</div>
 @if(session()->has('added'))
     <div class="fixed bg-blue-900 text-white py-5 px-4 rounded-xl bottom-3 right-3 text-sm">
         <p>{{session('added')}}</p>

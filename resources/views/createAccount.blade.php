@@ -9,11 +9,10 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-[url('../../public/background/background.svg')] select-none">
-
-<x-sidebar></x-sidebar>
-<x-create-account-form></x-create-account-form>
-<div class="my-20"></div>
-<x-footer></x-footer>
-
+<div class="space-y-40">
+    <x-sidebar></x-sidebar>
+    <x-create-account-form></x-create-account-form>
+    <x-footer></x-footer>
+</div>
 </body>
 </html>

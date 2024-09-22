@@ -101,8 +101,10 @@
     let grades = document.getElementsByClassName('grade-span');
     Array.from(grades).forEach(e => {
         e.addEventListener('click', function(){
-            Swal.fire('Waga oceny: ' + e.getAttribute('weight'));
-            console.log(e.getAttribute('gradeId'))
+            Swal.fire({
+                title: 'Waga oceny: ' + e.getAttribute('weight'),
+                confirmButtonColor: '#1e3a8a'
+            });
         })
     });
 </script>
