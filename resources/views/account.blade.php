@@ -8,9 +8,9 @@
     <title>Konto</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')]">
-<div class="flex flex-col justify-between">
+<div class="flex flex-col w-full h-screen justify-between gap-20">
     <x-sidebar></x-sidebar>
-    <div class="flex justify-center items-center w-full h-screen">
+    <div class="flex justify-center items-center">
         <x-edit-account-form :minimalAverage="$minimalAverage" />
     </div>
     <x-footer></x-footer>

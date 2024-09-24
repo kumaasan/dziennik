@@ -1,4 +1,4 @@
-<header class="bg-[rgb(40,64,90)] max-lg:bg-[rgb(40,64,90)] bg-opacity-80 text-white">
+<header class="bg-[rgb(40,64,90)] max-lg:bg-[rgb(40,64,90)] bg-opacity-80 text-white backdrop-blur-sm">
     <nav class="flex items-center justify-between px-12 h-16 lg:gap-8 py-12">
         <a href="{{route('homePage')}}">
             <img src="{{asset('logo.svg')}}" alt="logo" class="w-20 invert-color">

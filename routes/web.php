@@ -43,3 +43,5 @@ Route::get('/edytujOceny', [SubjectController::class, 'editGrades'])->name('edit
 Route::delete('edytujOceny', [\App\Http\Controllers\GradeController::class, 'deleteGrade'])->name('delete.grade')->middleware('auth');
 
 Route::get('/kontakt', [UserController::class, 'showContactPage'])->name('contact.page');
+
+Route::view('/politykaPrywatnosci', 'privactPolicy')->name('policy.page');

@@ -1,4 +1,4 @@
-<footer class="w-full pt-5 bg-[rgba(40,64,90,0.8)] max-lg:bg-[rgba(40,64,90,0.8)] max-lg:-webkit-backdrop-filter max-lg:-webkit-backdrop-blur-lg  max-lg:backdrop-filter max-lg:backdrop-blur-lg text-white">
+<footer class="w-full pt-5 bg-[rgb(40,64,90)] max-lg:bg-[rgb(40,64,90)] bg-opacity-80 text-white backdrop-blur-sm">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
             <a href="{{route('homePage')}}" class="flex items-center justify-center">
@@ -8,7 +8,7 @@
                 <li><a href="{{route('homePage')}}" class="text-white transform hover:underline hover:text-gray-400 hover:scale-105 transition-all">Strona główna</a></li>
                 <li><a href="{{route('account.show')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Konto</a></li>
                 <li><a href="{{route('subject.showAll')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Oceny</a></li>
-                <li><a href="#" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Polityka prywatności</a></li>
+                <li><a href="{{route('policy.page')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Polityka prywatności</a></li>
                 <li><a href="{{route('contact.page')}}" class="text-white hover:underline hover:text-gray-400 hover:scale-105 transition-all">Kontakt</a></li>
             </ul>
             <span class="text-md pb-10 text-white text-center block">©Better Dziennik 2024, Wszelkie prawa zastrzeżone.</span>

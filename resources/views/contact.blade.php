@@ -9,11 +9,9 @@
     <title>Kontakt</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')]">
-<div class="space-y-20">
+<div class="flex flex-col justify-between w-full h-screen gap-20">
     <x-sidebar></x-sidebar>
-    <div class="flex justify-center items-center w-full ">
-        <x-contact-form></x-contact-form>
-    </div>
+    <x-contact-form></x-contact-form>
     <x-footer></x-footer>
 </div>
 

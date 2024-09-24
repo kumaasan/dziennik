@@ -8,8 +8,8 @@
     <title>Tworzenie konta</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-[url('../../public/background/background.svg')] select-none">
-<div class="space-y-40">
+<body class="bg-[url('../../public/background/background.svg')]">
+<div class="flex flex-col w-full h-screen justify-between gap-20">
     <x-sidebar></x-sidebar>
     <x-create-account-form></x-create-account-form>
     <x-footer></x-footer>
