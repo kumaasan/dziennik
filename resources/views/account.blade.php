@@ -7,10 +7,10 @@
     @vite('resources/css/app.css')
     <title>Konto</title>
 </head>
-<body class="bg-[url('../../public/background/background.svg')] select-none">
-<x-sidebar></x-sidebar>
-<div class="flex flex-col">
-    <div class="flex justify-center items-center w-full h-screen md:mt-[-5%]">
+<body class="bg-[url('../../public/background/background.svg')]">
+<div class="flex flex-col justify-between">
+    <x-sidebar></x-sidebar>
+    <div class="flex justify-center items-center w-full h-screen">
         <x-edit-account-form :minimalAverage="$minimalAverage" />
     </div>
     <x-footer></x-footer>

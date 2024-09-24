@@ -9,7 +9,7 @@
     <title>Dodaj przedmioty</title>
 </head>
 <body class="bg-[url('../../public/background/background.svg')] h-screen flex flex-col">
-<div class="space-y-40">
+<div class="space-y-24 ">
 <x-sidebar></x-sidebar>
 
 <section class="flex flex-grow items-center justify-center max-lg:p-8">

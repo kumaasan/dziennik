@@ -9,9 +9,9 @@
 </head>
 <body class="bg-[url('../../public/background/background.svg')]">
 
-<div class=" w-full h-screen space-y-20">
+<div class=" w-full h-screen flex flex-col justify-between gap-10">
     <x-sidebar></x-sidebar>
-    <div class="container mx-auto lg:space-y-20 mt-20 max-lg:space-y-10 p-4">
+    <div class="container mx-auto lg:space-y-20 max-lg:space-y-10 p-4">
         <div class=" gap-4 mb-6">
             <div class="kpi-item bg-white text-white p-4 rounded-lg shadow ">
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight text-center">
