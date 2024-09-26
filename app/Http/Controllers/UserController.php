@@ -125,7 +125,6 @@ class UserController extends Controller
                 'password' => Hash::make($request->input('new_password'))
             ]);
         }
-
         session()->flash('successPassChange', 'Hasło zmieniono pomyślnie');
 
         return redirect(route('homePage'));
