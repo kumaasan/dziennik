@@ -11,68 +11,7 @@
 
 <body class="bg-[url('../../public/background/background.svg')]">
 <x-sidebar></x-sidebar>
-<!-- main content -->
-<div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <!-- First Row (Unchanged) -->
-        <div class="grid grid-cols-3 gap-4 mb-4">
-            <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-        </div>
-
-        <!-- Modified Second Row -->
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <!-- First big rectangle -->
-            <div class="flex items-center justify-center h-48 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">1</p>
-            </div>
-            <!-- Spacing between rectangles -->
-            <div class="flex items-center justify-center h-48 rounded bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-        </div>
-
-        <!-- Rows Underneath the Second Row's Rectangles -->
-        <div class="grid grid-cols-2 gap-4 mb-4">
-            <!-- Below first big rectangle -->
-            <div class="grid grid-cols-1 gap-4">
-                <div class="flex items-center justify-center h-28 rounded bg-gray-50 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">1</p>
-                </div>
-                <div class="flex items-center justify-center h-28 rounded bg-gray-50 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">1</p>
-                </div>
-            </div>
-            <!-- Below second big rectangle -->
-            <div class="grid grid-cols-1 gap-4">
-                <div class="flex items-center justify-center h-28 rounded bg-gray-50 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-                <div class="flex items-center justify-center h-28 rounded bg-gray-50 dark:bg-gray-800">
-                    <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Last Row (Unchanged) -->
-        <div class="grid grid-cols-2 gap-4">
-            <div class="flex items-center justify-center rounded h-28 bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-            <div class="flex items-center justify-center rounded h-28 bg-gray-50 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
-            </div>
-        </div>
-    </div>
-</div>
-
+{{dd("no elo")}}
 <div class="flex justify-center items-center w-full h-screen">
     <div class="w-full max-w-md p-6 pt-1 bg-white rounded-lg shadow-lg">
 

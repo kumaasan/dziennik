@@ -40,20 +40,20 @@
                                             @csrf
                                             @method('DELETE')
                                             <div>
-                                                <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
-                                                <input type="number" disabled id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
-                                                @if ($errors->has('weight'))
-                                                    <div class="text-red-500 text-sm mt-2">
-                                                        {{ $errors->first('weight') }}
-                                                    </div>
-                                                @endif
-                                            </div>
-                                            <div>
                                                 <label for="grade" class="block text-sm font-medium text-gray-700">Ocena</label>
                                                 <input type="number" disabled id="grade" name="grade" class="mt-1 block bg-[#F9FAFB] w-full border-gray-300 rounded-md shadow-sm">
                                                 @if ($errors->has('grade'))
                                                     <div class="text-red-500 text-sm mt-2">
                                                         {{ $errors->first('grade') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">Waga</label>
+                                                <input type="number" disabled id="weight" name="weight" class="mt-1 block w-full bg-[#F9FAFB] border-gray-300 rounded-md shadow-sm">
+                                                @if ($errors->has('weight'))
+                                                    <div class="text-red-500 text-sm mt-2">
+                                                        {{ $errors->first('weight') }}
                                                     </div>
                                                 @endif
                                             </div>
